@@ -22,12 +22,10 @@ gallery.on('error.simplelightbox', function (e) {
 	console.log(e); // some usefull information
 });
 
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", async e => {
     e.preventDefault();
     loader.classList.remove("hidden");
     const userSearch = form.elements.query.value.trim();
-    imgGallery.innerHTML = '<div class="loader"></div>';
-
     if (userSearch === '') {
          iziToast.error({
         color: 'red',
@@ -35,8 +33,10 @@ form.addEventListener("submit", async (e) => {
         message: `Fill in the input!`,
          });
         loader.classList.add("hidden");
+        imgGallery.innerHTML = "";
     } else {
-        try { const data = await getPhoto(userSearch)
+        try {
+            const data = await getPhoto(userSearch)
             if (data.total === 0) {
                 iziToast.error({
                     color: 'red',
@@ -45,14 +45,14 @@ form.addEventListener("submit", async (e) => {
                 });
                 e.target.reset();
                 loader.classList.add("hidden");
+                imgGallery.innerHTML = "";
             } else {
-                addImg();
+                imgGallery.innerHTML = "";
                 const markup = symbolTemplate(data.hits);
-                console.log(markup);
                 imgGallery.insertAdjacentHTML("beforeend", markup);
+                loader.classList.add("hidden");
                 gallery.refresh();
                 e.target.reset();
-                loader.classList.add("hidden");
             }
         } catch (error) {
             iziToast.error({
@@ -65,7 +65,6 @@ form.addEventListener("submit", async (e) => {
             loader.classList.add("hidden");
         }
     }
-     imgGallery.innerHTML = "";
 });
 
 
@@ -74,7 +73,6 @@ form.addEventListener("submit", async (e) => {
 //     loader.classList.remove("hidden");
 //     const userSearch = form.elements.query.value.trim();
 //     imgGallery.innerHTML = '<div class="loader"></div>';
-
 //     if (userSearch === '') {
 //          iziToast.error({
 //         color: 'red',
@@ -94,7 +92,6 @@ form.addEventListener("submit", async (e) => {
 //                 loader.classList.add("hidden");
 //             } else {
 //                 const markup = symbolTemplate(data.hits);
-//                 console.log(markup);
 //                 imgGallery.insertAdjacentHTML("beforeend", markup);
 //                 gallery.refresh();
 //                 e.target.reset();

@@ -169,6 +169,40 @@ img {
 }
 
 .hidden {
-  /* visibility: hidden; */
-  display: none
+  display: none;
+  opacity: 0;
+}
+
+/* /------------------------ */
+
+.button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button.is-hidden {
+  display: none;
+}
+
+.button>.spinner.is-hidden {
+  display: none;
+}
+.js-btn-load{
+  border-radius: 8px;
+  padding: 8px 16px;
+  min-width: 91px;
+  height: 40px;
+  background: #4e75ff;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+
+.gallery {
+  margin-bottom: 34px;
 }

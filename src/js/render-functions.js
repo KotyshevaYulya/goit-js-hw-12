@@ -8,6 +8,7 @@ export function symbolTemplate(objects) {
         .map(object => `<li class = "gallery-item">
          <a class="gallery-link" href="${object.largeImageURL}">
          <img
+         loading="lazy"
          class = "gallery-image"
          src="${object.webformatURL}" 
          alt="${object.tags}" 
